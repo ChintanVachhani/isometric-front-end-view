@@ -1,7 +1,22 @@
 body {
     padding-top: 5rem;
 }
+
 .starter-template {
     padding: 3rem 1.5rem;
     text-align: center;
 }
+
+#dropdown-right {
+    float: right;
+}
+
+#slide-right {
+    right: 0;
+    left: auto;
+}
+
+.container {
+    width: auto;
+}
+
