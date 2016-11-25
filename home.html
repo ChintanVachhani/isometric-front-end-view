@@ -2,258 +2,327 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Isometric</title>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap & Tether Core JavaScript -->
+    <script src="js/bootstrap.js"></script>
+    <script src="js/tether.js"></script>
 
-    <!-- Bootstrap & Font Awesome CSS -->
+    <!-- Bootstrap, Font Awesome & Tether CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/tether.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/home.css" rel="stylesheet">
-    <link href="css/user-sidebar.css" rel="stylesheet">
-    <link href="css/search-box.css" rel="stylesheet">
     <link rel="icon" href="img/favicon.png">
 
-
     <!--Custom Scripts-->
+    <script src="js/home.js"></script>
 
 </head>
 
 <body>
 
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <a class="navbar-brand" href="#">
-        <img src="img/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    <a class="navbar-brand" href="#" id="nav-logo">
+        <img src="img/isometric-logo-light.png" width="30" height="30" class="d-inline-block align-top" alt="isometric-logo">
         Isometric
     </a>
     <ul class="nav navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+        <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="#" id="home-link"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">My Bids</a>
+        <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="#" id="my-bids-link">My Bids</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">My Posts</a>
+        <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="#" id="my-posts-link">My Posts</a>
+        </li>
+        <li class="nav-item nav-item-custom">
+            <a class="nav-link" href="#" id="my-shopping-cart-link"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
         </li>
         <li class="nav-item dropdown" id="dropdown-right">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink"
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
             </a>
             <div class="dropdown-menu" id="slide-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">My Profile</a>
-                <a class="dropdown-item" href="#">Setting</a>
-                <a class="dropdown-item" href="#">Logout</a>
+                <!--Button Trigger for Profile Modal-->
+                <a class="dropdown-item" href="#" data-toggle="modal" id="my-profile-link"
+                   data-target="#profile-modal">My Profile</a>
+                <a class="dropdown-item" href="login.html" id="logout-link">Logout</a>
             </div>
         </li>
     </ul>
-
 </nav>
-<br>
-<div class="container">
+<div class="container-fluid" id="home-bg">
     <div class="row">
-        <div class="col-xs-6 col-sm-3">
-            <br>
-            <div class="card">
-                <div class="text-xs-center"><i class="fa fa-user-circle-o fa-5x text-xs-center" aria-hidden="true"></i>
+        <div class="col-lg-3" id="profile-div">
+            <!--Profile Div-->
+            <div class="card" id="profile-card">
+                <div class="card-block text-xs-center" id="profile-pic">
+                    <i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i>
+                    <h4 class="card-title" id="profile-name">Full Name</h4>
                 </div>
-                <div class="card-block">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some info</p>
+                <div class="card-block text-xs-right" id="profile-link">
+                    <!--Button Triggers for Profile Modal-->
+                    <a href="#" class="card-link" id="profile-view-btn" data-toggle="modal"
+                       data-target="#profile-modal"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="#" class="card-link" id="profile-edit-btn" data-toggle="modal"
+                       data-target="#profile-modal"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Overview
-                    </li>
-                    <li class="list-group-item">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Account Settings
-                    </li>
-                    <li class="list-group-item">
-                        <i class="fa fa-tasks" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Tasks
-                    </li>
-                    <li class="list-group-item">
-                        <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Help
-                    </li>
-                    <div class="card-block">
-                        <a href="#" class="card-link">Edit Profile</a>
-                        <a href="#" class="card-link">Another link if needed</a>
+            </div>
+            <!--Profile Modal-->
+            <div class="modal fade" id="profile-modal" tabindex="-1" role="dialog"
+                 aria-labelledby="newPostCreateModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="profile-modal-label">Profile Information</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="profile-modal-fullname" class="form-control-label">Full Name:</label>
+                                    <input type="text" class="form-control" id="profile-modal-fullname"
+                                           value="Full Name" readonly="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-modal-email" class="form-control-label">Email Address:</label>
+                                    <input type="email" class="form-control" id="profile-modal-email"
+                                           value="email@address.com" readonly="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-modal-username" class="form-control-label">User Name:</label>
+                                    <input type="text" class="form-control" id="profile-modal-username"
+                                           value="User Name" readonly="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-modal-password" class="form-control-label">Password:</label>
+                                    <input type="password" class="form-control" id="profile-modal-password"
+                                           value="Password" readonly="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profile-modal-login-info" class="form-control-label">Last Login:</label>
+                                    <div class="form-group" id="profile-modal-login-info">
+                                        <div class="row">
+                                            <div class="col-lg-4"><input type="text" class="form-control"
+                                                                         id="profile-modal-login-info-time"
+                                                                         value="Time" readonly="true"></div>
+                                            <div class="col-lg-4"><input type="text" class="form-control"
+                                                                         id="profile-modal-login-info-date"
+                                                                         value="Date" readonly="true"></div>
+                                            <div class="col-lg-4"><input type="text" class="form-control"
+                                                                         id="profile-modal-login-info-location"
+                                                                         value="Location" readonly="true"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="profile-modal-edit-btn">Edit</button>
+                            <button type="button" class="btn btn-primary" id="profile-modal-save-btn">Save</button>
+                        </div>
                     </div>
-                </ul>
+                </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-9">
-            <div class="row">
-                <div class="col-xs-6 col-sm-8">
-                    <form action="#" method="post" role="form" enctype="multipart/form-data" class="facebook-share-box">
-
-                        <div class="share">
-                            <div class="arrow"></div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading"><i class="fa fa-file"></i> New Posts??</div>
-                                <div class="panel-body">
-                                    <div class="">
-                            <textarea name="message" cols="40" rows="10" id="status_message"
-                                      class="form-control message" style="height: 62px; overflow: hidden;"
-                                      placeholder="What do you need ?"></textarea>
-                                    </div>
-                                </div>
-                                <div class="panel-footer">
-                                    <div class="row">
-                                        <div class="col-md-1">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-default">
-                                                    <i class="fa fa-camera-retro " aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <select class="form-control">
-                                                <option value="0" selected>Filter 1</option>
-                                                <option value="1">Featured</option>
-                                                <option value="2">Most popular</option>
-                                                <option value="3">Top rated</option>
-                                                <option value="4">Most commented</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <select class="form-control">
-                                                <option value="0" selected>Filter 2</option>
-                                                <option value="1">Featured</option>
-                                                <option value="2">Most popular</option>
-                                                <option value="3">Top rated</option>
-                                                <option value="4">Most commented</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <select class="form-control">
-                                                <option value="0" selected>Filter 3</option>
-                                                <option value="1">Featured</option>
-                                                <option value="2">Most popular</option>
-                                                <option value="3">Top rated</option>
-                                                <option value="4">Most commented</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <div class="form-group">
-                                                <input type="submit" name="submit" value="Post"
-                                                       class="btn btn-primary pull-right">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-xs-6 col-sm-4">
-                    <br>
-                    <div class="input-group" id="adv-search">
-                        <input type="text" class="form-control" placeholder="Search for Bids"/>
-                        <div class="input-group-btn">
-                            <div class="btn-group" role="group">
-                                <div class="dropdown dropdown-lg">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="false"><span class="caret"></span></button>
-                                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                        <form class="form-horizontal" role="form">
-                                            <div class="form-group row">
-                                                <label for="filter">Filter 1</label>
-                                                <select class="form-control">
-                                                    <option value="0" selected>All Snippets</option>
-                                                    <option value="1">Featured</option>
-                                                    <option value="2">Most popular</option>
-                                                    <option value="3">Top rated</option>
-                                                    <option value="4">Most commented</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="filter">Filter 2</label>
-                                                <select class="form-control">
-                                                    <option value="0" selected>All Snippets</option>
-                                                    <option value="1">Featured</option>
-                                                    <option value="2">Most popular</option>
-                                                    <option value="3">Top rated</option>
-                                                    <option value="4">Most commented</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label for="filter">Filter 3</label>
-                                                <select class="form-control">
-                                                    <option value="0" selected>All Snippets</option>
-                                                    <option value="1">Featured</option>
-                                                    <option value="2">Most popular</option>
-                                                    <option value="3">Top rated</option>
-                                                    <option value="4">Most commented</option>
-                                                </select>
-                                            </div>
-
-                                        </form>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </div>
-
-                                </div>
-                                <button type="button" class="btn btn-primary">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true">Q</span></button>
-                            </div>
-                        </div>
+        <div class="col-lg-5" id="new-post-div">
+            <!--New Post Div-->
+            <div class="card" id="new-post-card">
+                <h6 class="card-header">New Post</h6>
+                <div class="card-block">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" placeholder="Post Title" id="new-post-title">
                     </div>
-                    <br>
-                    <div class="row col-xs-6 col-sm-11">
-                        <form>
-                            <div class="form-group ">
-                                <h6 for="filter">Sort by:&nbsp;&nbsp;</h6><span>
-                                <select class="form-control">
-                                    <option value="0" selected>All Snippets</option>
-                                    <option value="1">Featured</option>
-                                    <option value="2">Most popular</option>
-                                    <option value="3">Top rated</option>
-                                    <option value="4">Most commented</option>
-                               </select>
-                            </span>
-                            </div>
-
-                        </form>
+                </div>
+                <!--Button Trigger for New Post Modal-->
+                <div class="card-block text-xs-right" id="new-post-create-btn-container">
+                    <a href="#" class="btn btn-primary btn-sm" id="post-create-btn" data-toggle="modal"
+                       data-target="#new-post-create-modal">Create</a>
+                </div>
+            </div>
+            <!-- New Post Modal -->
+            <div class="modal fade" id="new-post-create-modal" tabindex="-1" role="dialog"
+                 aria-labelledby="newPostCreateModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="new-post-create-modal-label">New Post</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="new-post-modal-title" class="form-control-label">Title:</label>
+                                    <input type="text" class="form-control" id="new-post-modal-title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-post-modal-description"
+                                           class="form-control-label">Description:</label>
+                                    <textarea class="form-control" id="new-post-modal-description"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary">Post</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-
+        </div>
+        <div class="col-lg-4" id="search-div">
+            <!--Search Div-->
+            <div class="card" id="search-card">
+                <h6 class="card-header">Search Post</h6>
+                <div class="card-block">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        <input type="search" class="form-control" placeholder="Search" id="post-search">
+                    </div>
+                </div>
+                <div class="card-block text-xs-right" id="post-search-btn-container">
+                    <!--Button Trigger for Search Filter Modal-->
+                    <a href="#" class="btn btn-secondary btn-sm" id="post-search-filter-btn" data-toggle="modal"
+                       data-target="#post-search-filter-modal">Filter</a>
+                    <a href="#" class="btn btn-primary btn-sm" id="post-search-btn">Search</a>
+                </div>
+                <!-- New Post Modal -->
+                <div class="modal fade" id="post-search-filter-modal" tabindex="-1" role="dialog"
+                     aria-labelledby="newPostCreateModal" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="post-search-filter-modal-label">Search Filters</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="new-post-modal-title" class="form-control-label">Filter 1:</label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new-post-modal-title" class="form-control-label">Filter 2:</label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new-post-modal-title" class="form-control-label">Filter 3:</label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="new-post-modal-title" class="form-control-label">Filter 4:</label>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox"> Value 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary">Clear</button>
+                                <button type="button" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-lg-12" id="display-div">
+            <!--Display Div-->
+            <table class="table">
+                <thead class="thead-default">
+                <tr>
+                    <th>#</th>
+                    <th>Title&nbsp;&nbsp;<a href="#"><i class="fa fa-sort-asc" aria-hidden="true"></i></a>&nbsp;&nbsp;<a
+                            href="#"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
+                    <th>Description&nbsp;&nbsp;<a href="#"><i class="fa fa-sort-asc" aria-hidden="true"></i></a>&nbsp;&nbsp;<a
+                            href="#"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
+                    <th>Estimated Quantity&nbsp;&nbsp;<a href="#"><i class="fa fa-sort-asc" aria-hidden="true"></i></a>&nbsp;&nbsp;<a
+                            href="#"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
+                    <th>Time Posted&nbsp;&nbsp;<a href="#"><i class="fa fa-sort-asc" aria-hidden="true"></i></a>&nbsp;&nbsp;<a
+                            href="#"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                    <td>@mdo</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-<!-- /.container -->
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="./Starter Template for Bootstrap_files/jquery.min.js.download"
-        integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY"
-        crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="./Starter Template for Bootstrap_files/tether.min.js.download"
-        integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB"
-        crossorigin="anonymous"></script>
-<script src="./Starter Template for Bootstrap_files/bootstrap.min.js.download"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="./Starter Template for Bootstrap_files/ie10-viewport-bug-workaround.js.download"></script>
-
-
 </body>
 </html>

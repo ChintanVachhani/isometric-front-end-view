@@ -1,12 +1,3 @@
-/*@font-face {*/
-/*font-family: DIN;*/
-/*src: url(../fonts/DIN_Medium.woff);*/
-/*}*/
-
-/** {*/
-/*font-family: DIN;*/
-/*}*/
-
 html, body {
     width: 100%;
     height: 100%;
@@ -60,7 +51,7 @@ html, body {
 #login-box, #register-box {
     border-radius: 4px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.775);
+    background-color: rgba(255, 255, 255, 0.75);
     padding: 15px;
     width: 320px;
     z-index: 2;
