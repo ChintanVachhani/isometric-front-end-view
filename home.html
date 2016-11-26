@@ -8,6 +8,10 @@
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
+    <!--Custom Scripts-->
+    <script src="js/home.js"></script>
+    <script src="js/sorttable.js"></script>
+
     <!-- Bootstrap & Tether Core JavaScript -->
     <script src="js/bootstrap.js"></script>
     <script src="js/tether.js"></script>
@@ -19,10 +23,8 @@
 
     <!-- Custom CSS -->
     <link href="css/home.css" rel="stylesheet">
+    <link href="css/sorttable.css" rel="stylesheet">
     <link rel="icon" href="img/favicon.png">
-
-    <!--Custom Scripts-->
-    <script src="js/home.js"></script>
 
 </head>
 
@@ -30,7 +32,8 @@
 
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
     <a class="navbar-brand" href="#" id="nav-logo">
-        <img src="img/isometric-logo-light.png" width="30" height="30" class="d-inline-block align-top" alt="isometric-logo">
+        <img src="img/isometric-logo-light.png" width="30" height="30" class="d-inline-block align-top"
+             alt="isometric-logo">
         Isometric
     </a>
     <ul class="nav navbar-nav">
@@ -44,7 +47,8 @@
             <a class="nav-link" href="#" id="my-posts-link">My Posts</a>
         </li>
         <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="#" id="my-shopping-cart-link"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i></a>
+            <a class="nav-link" href="#" id="my-shopping-cart-link"><i class="fa fa-shopping-cart fa-lg"
+                                                                       aria-hidden="true"></i></a>
         </li>
         <li class="nav-item dropdown" id="dropdown-right">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
@@ -283,37 +287,33 @@
     <div class="row">
         <div class="col-lg-12" id="display-div">
             <!--Display Div-->
-            <table class="table">
+            <table class="table sortable">
                 <thead class="thead-default">
                 <tr>
                     <th>#</th>
-                    <th>Title&nbsp;&nbsp;<a href="#"><i class="fa fa-sort-asc" aria-hidden="true"></i></a>&nbsp;&nbsp;<a
-                            href="#"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
-                    <th>Description&nbsp;&nbsp;<a href="#"><i class="fa fa-sort-asc" aria-hidden="true"></i></a>&nbsp;&nbsp;<a
-                            href="#"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
-                    <th>Estimated Quantity&nbsp;&nbsp;<a href="#"><i class="fa fa-sort-asc" aria-hidden="true"></i></a>&nbsp;&nbsp;<a
-                            href="#"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
-                    <th>Time Posted&nbsp;&nbsp;<a href="#"><i class="fa fa-sort-asc" aria-hidden="true"></i></a>&nbsp;&nbsp;<a
-                            href="#"><i class="fa fa-sort-desc" aria-hidden="true"></i></a></th>
+                    <th>Title&nbsp;&nbsp;</th>
+                    <th>Description&nbsp;&nbsp;</th>
+                    <th>Estimated Quantity&nbsp;&nbsp;</th>
+                    <th>Time Posted&nbsp;&nbsp;</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <th scope="row">1</th>
+                    <td>1</td>
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>@mdo</td>
                 </tr>
                 <tr>
-                    <th scope="row">2</th>
+                    <td>2</td>
                     <td>Jacob</td>
                     <td>Thornton</td>
                     <td>@fat</td>
                     <td>@mdo</td>
                 </tr>
                 <tr>
-                    <th scope="row">3</th>
+                    <td>3</td>
                     <td>Larry</td>
                     <td>the Bird</td>
                     <td>@twitter</td>
