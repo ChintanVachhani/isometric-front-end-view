@@ -3,7 +3,10 @@ $(document).ready(function () {
     $("#post-create-btn").click(function () {
         $("#new-post-modal-title").val($("#new-post-title").val());
     });
-    //Control Proifle Modal invoking and buttons
+    //Control Profile Modal invoking and buttons
+    $('#profile-modal').on('hide.bs.modal', function () {
+        disableInputs();
+    });
     $("#my-profile-link").click(function () {
         $("#profile-modal-save-btn").hide();
         $("#profile-modal-edit-btn").show();
@@ -22,11 +25,19 @@ $(document).ready(function () {
         $("#profile-modal-save-btn").show();
         enableInputs();
     });
+
     function enableInputs() {
         $("#profile-modal-fullname").prop('readonly', false);
         $("#profile-modal-email").prop('readonly', false);
         $("#profile-modal-username").prop('readonly', false);
         $("#profile-modal-password").prop('readonly', false);
+    }
+
+    function disableInputs() {
+        $("#profile-modal-fullname").prop('readonly', true);
+        $("#profile-modal-email").prop('readonly', true);
+        $("#profile-modal-username").prop('readonly', true);
+        $("#profile-modal-password").prop('readonly', true);
     }
 });
 
