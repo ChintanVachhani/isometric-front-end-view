@@ -1,0 +1,40 @@
+body {
+    padding-top: 3.4rem;
+    padding-left: 0.95rem;
+    padding-right: 0.95rem;
+}
+
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+#dropdown-right {
+    float: right;
+}
+
+#slide-right {
+    right: 0;
+    left: auto;
+}
+
+.container {
+    width: auto;
+}
+
+#nav-logo {
+    margin-right: 100px;
+}
+
+.nav-item-custom {
+    margin-right: 20px;
+}
+
+#my-posts-bg {
+    padding: 5px;
+}
+
+
+#display-div {
+    padding: 0px;
+}
