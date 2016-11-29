@@ -9,12 +9,14 @@
     <script src="js/jquery.js"></script>
 
     <!--Custom Scripts-->
+    <script src="controller/home-controller.js"></script>
+    <script src="controller/nav-bar-controller.js"></script>
     <script src="js/home.js"></script>
     <script src="js/sorttable.js"></script>
 
     <!-- Bootstrap & Tether Core JavaScript -->
+    <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/tether.js"></script>
 
     <!-- Bootstrap, Font Awesome & Tether CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -97,7 +99,7 @@
                             <h4 class="modal-title" id="profile-modal-label">Profile Information</h4>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form id="profile-modal-form" method="post">
                                 <div class="form-group">
                                     <label for="profile-modal-fullname" class="form-control-label">Full Name:</label>
                                     <input type="text" class="form-control" id="profile-modal-fullname"
@@ -122,13 +124,13 @@
                                     <label for="profile-modal-login-info" class="form-control-label">Last Login:</label>
                                     <div class="form-group" id="profile-modal-login-info">
                                         <div class="row">
-                                            <div class="col-lg-4"><input type="text" class="form-control"
+                                            <div class="col-lg-3"><input type="text" class="form-control"
                                                                          id="profile-modal-login-info-time"
                                                                          value="Time" readonly="true"></div>
-                                            <div class="col-lg-4"><input type="text" class="form-control"
+                                            <div class="col-lg-3"><input type="text" class="form-control"
                                                                          id="profile-modal-login-info-date"
                                                                          value="Date" readonly="true"></div>
-                                            <div class="col-lg-4"><input type="text" class="form-control"
+                                            <div class="col-lg-6"><input type="text" class="form-control"
                                                                          id="profile-modal-login-info-location"
                                                                          value="Location" readonly="true"></div>
                                         </div>
@@ -220,7 +222,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="new-post-modal-file">Blueprint:</label>
-                                    <input type="file" class="form-control-file" id="new-post-modal-file" aria-describedby="fileHelp">
+                                    <input type="file" class="form-control-file" id="new-post-modal-file"
+                                           aria-describedby="fileHelp">
                                 </div>
                             </form>
                         </div>

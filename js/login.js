@@ -11,4 +11,7 @@ $(document).ready(function () {
         $(this).closest("#register-box").animate({opacity: 'hide', height: 'hide'}, 'fast');
         $("#login-box").animate({opacity: 'show', height: 'show'}, 'slow');
     });
+
+    //Hide Alert
+    $("#login-alert").hide();
 });

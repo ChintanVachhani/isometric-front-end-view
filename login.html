@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Isometric</title>
 
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!--For Geo Location of the user-->
+    <script src="http://www.geoplugin.net/javascript.gp"></script>
+    <!--Custom Scripts-->
+    <script src="js/login.js"></script>
+    <script src="controller/login-controller.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+
     <!-- Bootstrap & Font Awesome CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet">
@@ -13,33 +27,27 @@
     <link href="css/login.css" rel="stylesheet">
     <link rel="icon" href="img/favicon.png">
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.js"></script>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!--Custom Scripts-->
-    <script src="js/login.js"></script>
-
 </head>
 <body>
 <div id="login-bg">
+    <div class="alert alert-danger fade in" role="alert" id="login-alert"></div>
     <div id="login-box">
-        <form action="home.html">
+        <form id="login-form" method="post">
             <fieldset>
                 <legend><i class="fa fa-lock fa-2x" aria-hidden="true"></i></legend>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
                         <span class="input-group-addon-custom"><i class="fa fa-user-circle fa-fw"
                                                                   aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" id="login-username" placeholder="username">
+                        <input type="text" class="form-control" name="login-username" id="login-username"
+                               placeholder="username" required>
                     </div>
                 </div>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
                         <span class="input-group-addon-custom"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
-                        <input type="password" class="form-control" id="login-password" placeholder="password">
+                        <input type="password" class="form-control" name="login-password" id="login-password"
+                               placeholder="password" required>
                     </div>
                 </div>
                 <div class="form-group form-group-center">
@@ -50,12 +58,15 @@
                             href="javascript:void(0)" id="register-link"
                             class="text-primary">Register</a> here.</span>
                 </div>
+                <input type="hidden" name="login-time" id="login-time" value="">
+                <input type="hidden" name="login-date" id="login-date" value="">
+                <input type="hidden" name="login-location" id="login-location" value="">
             </fieldset>
             <fieldset>
                 <legend><i class="fa fa-exchange" aria-hidden="true"></i></legend>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
-                        <button type="submit" class="btn btn-danger" id="google-login-btn">Log in with
+                        <button class="btn btn-danger" id="google-login-btn">Log in with
                             <strong>Google</strong>
                         </button>
                     </div>
@@ -64,34 +75,38 @@
         </form>
     </div>
     <div id="register-box">
-        <form action="login.html">
+        <form id="register-form" method="post">
             <fieldset>
                 <legend><i class="fa fa-lock fa-2x" aria-hidden="true"></i></legend>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
                         <span class="input-group-addon-custom"><i class="fa fa-user-circle fa-fw"
                                                                   aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" id="register-username" placeholder="username">
+                        <input type="text" class="form-control" name="register-username" id="register-username"
+                               placeholder="username" required>
                     </div>
                 </div>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
                         <span class="input-group-addon-custom"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
-                        <input type="password" class="form-control" id="register-password" placeholder="password">
+                        <input type="password" class="form-control" name="register-password" id="register-password"
+                               placeholder="password" required>
                     </div>
                 </div>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
                         <span class="input-group-addon-custom"><i class="fa fa-envelope-o fa-fw"
                                                                   aria-hidden="true"></i></span>
-                        <input type="email" class="form-control" id="register-email" placeholder="email">
+                        <input type="email" class="form-control" name="register-email" id="register-email"
+                               placeholder="email" required>
                     </div>
                 </div>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
                         <span class="input-group-addon-custom"><i class="fa fa-id-card-o fa-fw"
                                                                   aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" id="register-fullname" placeholder="Full Name">
+                        <input type="text" class="form-control" name="register-fullname" id="register-fullname"
+                               placeholder="Full Name" required>
                     </div>
                 </div>
                 <div class="form-group form-group-center">
