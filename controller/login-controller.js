@@ -37,7 +37,7 @@ $(document).ready(function () {
     function redirectToHome(data) {
         if (data.message == "Login successful.") {
             if (typeof(Storage) !== "undefined") {
-                sessionStorage.user = $("#login-username").val();
+                sessionStorage.userId = data.userId;
                 window.location.href = "/isometric-front-end-view/home.html";
             } else {
                 $("#login-alert").removeClass('alert-success').addClass('alert-danger').text("No Storage support in your browser. Use a latest browser.");

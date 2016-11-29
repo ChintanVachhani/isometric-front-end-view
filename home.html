@@ -33,40 +33,46 @@
 <body>
 
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <a class="navbar-brand" href="#" id="nav-logo">
-        <img src="img/isometric-logo-light.png" width="30" height="30" class="d-inline-block align-top"
-             alt="isometric-logo">
-        Isometric
-    </a>
-    <ul class="nav navbar-nav">
-        <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="home.html" id="home-link"><i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Home</a>
-        </li>
-        <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="my-bids.html" id="my-bids-link"><i class="fa fa-gavel" aria-hidden="true"></i>&nbsp;&nbsp;My
-                Bids</a>
-        </li>
-        <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="my-posts.html" id="my-posts-link"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp;My
-                Posts</a>
-        </li>
-        <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="#" id="my-shopping-cart-link"><i class="fa fa-shopping-cart fa-lg"
-                                                                       aria-hidden="true"></i>&nbsp;&nbsp;My Cart</a>
-        </li>
-        <li class="nav-item dropdown" id="dropdown-right">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
-            </a>
-            <div class="dropdown-menu" id="slide-right" aria-labelledby="navbarDropdownMenuLink">
-                <!--Button Trigger for Profile Modal-->
-                <a class="dropdown-item" href="#" data-toggle="modal" id="my-profile-link"
-                   data-target="#profile-modal">My Profile</a>
-                <a class="dropdown-item" href="login.html" id="logout-link">Logout</a>
-            </div>
-        </li>
-    </ul>
+    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+        <a class="navbar-brand" href="home.html" id="nav-logo">
+            <img src="img/isometric-logo-light.png" width="30" height="30" class="d-inline-block align-top"
+                 alt="isometric-logo">
+            Isometric
+        </a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="home.html" id="home-link"><i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Home</a>
+            </li>
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="my-bids.html" id="my-bids-link"><i class="fa fa-gavel" aria-hidden="true"></i>&nbsp;&nbsp;My
+                    Bids</a>
+            </li>
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="my-posts.html" id="my-posts-link"><i class="fa fa-upload"
+                                                                               aria-hidden="true"></i>&nbsp;&nbsp;My
+                    Posts</a>
+            </li>
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="#" id="my-shopping-cart-link"><i class="fa fa-shopping-cart fa-lg"
+                                                                           aria-hidden="true"></i>&nbsp;&nbsp;My
+                    Cart</a>
+            </li>
+            <li class="nav-item dropdown" id="dropdown-right">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu" id="slide-right" aria-labelledby="navbarDropdownMenuLink">
+                    <!--Button Trigger for Profile Modal-->
+                    <a class="dropdown-item" href="#" data-toggle="modal" id="my-profile-link"
+                       data-target="#profile-modal">My Profile</a>
+                    <a class="dropdown-item" href="login.html" id="logout-link">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </nav>
 <div class="container-fluid" id="home-bg">
     <div class="row">
@@ -102,35 +108,42 @@
                             <form id="profile-modal-form" method="post">
                                 <div class="form-group">
                                     <label for="profile-modal-fullname" class="form-control-label">Full Name:</label>
-                                    <input type="text" class="form-control" id="profile-modal-fullname"
-                                           value="Full Name" readonly="true">
+                                    <input type="text" class="form-control" name="fullName"
+                                           id="profile-modal-fullname"
+                                           value="" readonly="true" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-modal-email" class="form-control-label">Email Address:</label>
-                                    <input type="email" class="form-control" id="profile-modal-email"
-                                           value="email@address.com" readonly="true">
+                                    <input type="email" class="form-control" name="email"
+                                           id="profile-modal-email"
+                                           value="" readonly="true" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-modal-username" class="form-control-label">User Name:</label>
-                                    <input type="text" class="form-control" id="profile-modal-username"
-                                           value="User Name" readonly="true">
+                                    <input type="text" class="form-control" name="userName"
+                                           id="profile-modal-username"
+                                           value="" readonly="true" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-modal-password" class="form-control-label">Password:</label>
-                                    <input type="password" class="form-control" id="profile-modal-password"
-                                           value="Password" readonly="true">
+                                    <input type="password" class="form-control" name="password"
+                                           id="profile-modal-password"
+                                           value="" readonly="true" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-modal-login-info" class="form-control-label">Last Login:</label>
                                     <div class="form-group" id="profile-modal-login-info">
                                         <div class="row">
                                             <div class="col-lg-3"><input type="text" class="form-control"
+                                                                         name="time"
                                                                          id="profile-modal-login-info-time"
                                                                          value="Time" readonly="true"></div>
                                             <div class="col-lg-3"><input type="text" class="form-control"
+                                                                         name="date"
                                                                          id="profile-modal-login-info-date"
                                                                          value="Date" readonly="true"></div>
                                             <div class="col-lg-6"><input type="text" class="form-control"
+                                                                         name="location"
                                                                          id="profile-modal-login-info-location"
                                                                          value="Location" readonly="true"></div>
                                         </div>
@@ -174,20 +187,21 @@
                             <h4 class="modal-title" id="new-post-create-modal-label">New Post</h4>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form id="new-post-form">
                                 <div class="form-group">
                                     <label for="new-post-modal-title" class="form-control-label">Title:</label>
-                                    <input type="text" class="form-control" id="new-post-modal-title">
+                                    <input type="text" class="form-control" name="title" id="new-post-modal-title">
                                 </div>
                                 <div class="form-group">
                                     <label for="new-post-modal-description"
                                            class="form-control-label">Description:</label>
-                                    <textarea class="form-control" id="new-post-modal-description"></textarea>
+                                    <textarea class="form-control" name="description"
+                                              id="new-post-modal-description"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="new-post-modal-material-select"
                                            class="form-control-label">Material:</label>
-                                    <select class="form-control" id="new-post-modal-material-select">
+                                    <select class="form-control" name="material" id="new-post-modal-material-select">
                                         <option>Plastic</option>
                                         <option>Glass</option>
                                         <option>Polyamide</option>
@@ -196,7 +210,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="new-post-modal-size-select" class="form-control-label">Size:</label>
-                                    <select class="form-control" id="new-post-modal-size-select">
+                                    <select class="form-control" name="size" id="new-post-modal-size-select">
                                         <option>S</option>
                                         <option>M</option>
                                         <option>L</option>
@@ -206,7 +220,7 @@
                                 <div class="form-group">
                                     <label for="new-post-modal-built-type-select" class="form-control-label">Color
                                         Type:</label>
-                                    <select class="form-control" id="new-post-modal-built-type-select">
+                                    <select class="form-control" name="builtType" id="new-post-modal-built-type-select">
                                         <option>Solid</option>
                                         <option>Hollow</option>
                                     </select>
@@ -214,7 +228,7 @@
                                 <div class="form-group">
                                     <label for="new-post-modal-color-type-select" class="form-control-label">Color
                                         Type:</label>
-                                    <select class="form-control" id="new-post-modal-color-type-select">
+                                    <select class="form-control" name="colorType" id="new-post-modal-color-type-select">
                                         <option>Mono</option>
                                         <option>Dual</option>
                                         <option>Multi</option>
@@ -262,9 +276,9 @@
                                 <h4 class="modal-title" id="post-search-filter-modal-label">Search Filters</h4>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form id="post-search-filter-form">
                                     <div class="form-group">
-                                        <label for="new-post-modal-title" class="form-control-label">Material:</label>
+                                        <label class="form-control-label">Material:</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox"> Plastic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -281,7 +295,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="new-post-modal-title" class="form-control-label">Size:</label>
+                                        <label class="form-control-label">Size:</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox"> S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -298,7 +312,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="new-post-modal-title" class="form-control-label">Built Type:</label>
+                                        <label class="form-control-label">Built Type:</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox"> Solid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -309,7 +323,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="new-post-modal-title" class="form-control-label">Color Type:</label>
+                                        <label class="form-control-label">Color Type:</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input class="form-check-input" type="checkbox"> Mono&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -325,8 +339,12 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary">Clear</button>
-                                <button type="button" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-secondary" id="post-search-filter-modal-clear-btn">
+                                    Clear
+                                </button>
+                                <button type="button" class="btn btn-primary" id="post-search-filter-modal-save-btn">
+                                    Save
+                                </button>
                             </div>
                         </div>
                     </div>

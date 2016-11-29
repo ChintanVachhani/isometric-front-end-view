@@ -39,6 +39,11 @@ $(document).ready(function () {
         $("#profile-modal-username").prop('readonly', true);
         $("#profile-modal-password").prop('readonly', true);
     }
+
+    //Clear Filter
+    $("#post-search-filter-modal-clear-btn").click(function () {
+        $("#post-search-filter-form").trigger('reset');
+    });
 });
 
 
