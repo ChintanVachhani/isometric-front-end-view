@@ -81,6 +81,7 @@ if (!sessionStorage.userId) {
                 data: $("#new-post-form").serialize(),
                 success: function (data, textStatus, jqXHR) {
                     location.reload();
+                    loadPosts();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     window.location.href = "/isometric-front-end-view/error-404.html";
