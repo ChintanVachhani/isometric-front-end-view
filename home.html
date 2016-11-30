@@ -9,7 +9,7 @@
     <script src="js/jquery.js"></script>
 
     <!--Custom Scripts-->
-    <script src="controller/home-controller.js"></script>
+        <script src="controller/home-controller.js"></script>
     <script src="controller/nav-bar-controller.js"></script>
     <script src="js/home.js"></script>
     <script src="js/sorttable.js"></script>
@@ -196,7 +196,7 @@
                                     <label for="new-post-modal-description"
                                            class="form-control-label">Description:</label>
                                     <textarea class="form-control" name="description"
-                                              id="new-post-modal-description"></textarea>
+                                              id="new-post-modal-description" style="overflow:auto;resize: none"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="new-post-modal-material-select"
@@ -233,11 +233,6 @@
                                         <option>Dual</option>
                                         <option>Multi</option>
                                     </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="new-post-modal-file">Blueprint:</label>
-                                    <input type="file" class="form-control-file" id="new-post-modal-file"
-                                           aria-describedby="fileHelp">
                                 </div>
                             </form>
                         </div>
@@ -377,8 +372,8 @@
                     <td>Solid</td>
                     <td>Mono</td>
                     <td>plastic</td>
-                    <td><a href="#" data-toggle="tooltip" data-placement="right" title="Post Details"><i
-                            class="fa fa-info" aria-hidden="true"></i></a></td>
+                    <td><a href="#" data-placement="right" title="Post Details" class="card-link" data-toggle="modal"
+                           data-target="#post-modal"><i class="fa fa-info" aria-hidden="true" data-toggle="tooltip"></i></a></td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -388,8 +383,8 @@
                     <td>Dual</td>
                     <td>Hollow</td>
                     <td>glass</td>
-                    <td><a href="#" data-toggle="tooltip" data-placement="right" title="Post Details"><i
-                            class="fa fa-info" aria-hidden="true"></i></a></td>
+                    <td><a href="#" data-placement="right" title="Post Details" class="card-link" data-toggle="modal"
+                           data-target="#post-modal"><i class="fa fa-info" aria-hidden="true" data-toggle="tooltip"></i></a></td>
                 </tr>
                 <tr>
                     <td>3</td>
@@ -399,8 +394,8 @@
                     <td>Mutli</td>
                     <td>Solid</td>
                     <td>polyamide</td>
-                    <td><a href="#" data-toggle="tooltip" data-placement="right" title="Post Details"><i
-                            class="fa fa-info" aria-hidden="true"></i></a></td>
+                    <td><a href="#" data-placement="right" title="Post Details" class="card-link" data-toggle="modal"
+                           data-target="#post-modal"><i class="fa fa-info" aria-hidden="true" data-toggle="tooltip"></i></a></td>
                 </tr>
                 <tr>
                     <td>4</td>
@@ -410,11 +405,119 @@
                     <td>Dual</td>
                     <td>Hollow</td>
                     <td>polycarbonate</td>
-                    <td><a href="#" data-toggle="tooltip" data-placement="right" title="Post Details"><i
-                            class="fa fa-info" aria-hidden="true"></i></a></td>
+                    <td><a href="#" data-placement="right" title="Post Details" class="card-link" data-toggle="modal"
+                           data-target="#post-modal"><i class="fa fa-info" aria-hidden="true" data-toggle="tooltip"></i></a></td>
                 </tr>
                 </tbody>
             </table>
+
+            <!---Display post description modal--->
+            <div class="modal fade" id="post-modal" tabindex="-1" role="dialog"
+                 aria-labelledby="newPostCreateModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="post-modal-label">#&nbsp;</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="post-modal-form" method="post">
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="postID"
+                                           id="post-modal-postID"
+                                           value="" readonly="true" required>
+
+                                    <label for="post-modal-post-title" class="form-control-label">Title:</label>
+                                    <input type="text" class="form-control" name="postTitle"
+                                           id="post-modal-post-title"
+                                           value="" readonly="true" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-modal-Description" class="form-control-label">Description:</label>
+                                    <textarea class="form-control" name="itemDescription"
+                                           id="post-modal-Description" style="overflow:auto;resize: none"
+                                              value="" readonly="true" required></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="post-modal-material" class="form-control-label">Material:</label>
+                                    <input type="email" class="form-control" name="itemMaterial"
+                                           id="post-modal-material"
+                                           value="" readonly="true" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-modal-built-type" class="form-control-label">Built Type:</label>
+                                    <input type="text" class="form-control" name="itemBuiltType"
+                                           id="post-modal-built-type"
+                                           value="" readonly="true" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-modal-color-type" class="form-control-label">Color Type:</label>
+                                    <input type="text" class="form-control" name="itemColorType"
+                                           id="post-modal-color-type"
+                                           value="" readonly="true" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-modal-size" class="form-control-label">Size:</label>
+                                    <input type="text" class="form-control" name="itemSize"
+                                           id="post-modal-size"
+                                           value="" readonly="true" required>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="post-modal-bid-btn" data-toggle="modal"
+                                    data-target="#bid-modal">Bid</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="bid-modal" tabindex="-1" role="dialog"
+                 aria-labelledby="newBidCreateModal" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">New Bid</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="bid-modal-form" method="bid">
+                                <div class="form-group">
+                                    <label for="bid-modal-postID" class="form-control-label">Post ID:</label>
+                                    <input type="text" class="form-control" name="postID"
+                                           id="bid-modal-postID"
+                                           value="" readonly="true" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bid-modal-post-title" class="form-control-label">Title:</label>
+                                    <input type="text" class="form-control" name="postTitle"
+                                           id="bid-modal-post-title"
+                                           value="" readonly="true" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bid-modal-amount" class="form-control-label">Amount:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input type="text" class="form-control" name="itemAmount"
+                                               id="bid-modal-amount" value="" required>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="bid-modal-confirm-btn">Confirm Bid</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

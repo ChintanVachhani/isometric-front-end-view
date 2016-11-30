@@ -26,6 +26,10 @@ $(document).ready(function () {
         enableInputs();
     });
 
+    $("#post-modal-bid-btn").click(function () {
+       $("#post-modal").modal('hide');
+    });
+
     function enableInputs() {
         $("#profile-modal-fullname").prop('readonly', false);
         $("#profile-modal-email").prop('readonly', false);
