@@ -10,6 +10,7 @@
 
     <!--Custom Scripts-->
     <script src="controller/nav-bar-controller.js"></script>
+    <script src="controller/my-posts-controller.js"></script>
     <script src="js/my-posts.js"></script>
     <script src="js/sorttable.js"></script>
 
@@ -77,47 +78,14 @@
                     <th>Title&nbsp;&nbsp;</th>
                     <th>Material&nbsp;&nbsp;</th>
                     <th>Size&nbsp;&nbsp;</th>
+                    <th>Built Type&nbsp;&nbsp;</th>
+                    <th>Color Type&nbsp;&nbsp;</th>
                     <th>Time Posted&nbsp;&nbsp;</th>
                     <th class="sorttable_nosort"></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td><a href="#" data-placement="right" title="View Bids" data-toggle="modal"
-                           data-target="#bid-modal"><i class="fa fa-gavel" aria-hidden="true" data-toggle="tooltip"></i></a>
-                        &nbsp;&nbsp;&nbsp;<a href="#" data-placement="right" data-toggle="modal" data-target="#post-modal"><i
-                                class="fa fa-info" aria-hidden="true" data-toggle="tooltip" title="Post Details"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>@mdo</td>
-                    <td><a href="#" data-placement="right" title="View Bids" data-toggle="modal"
-                           data-target="#bid-modal"><i class="fa fa-gavel" aria-hidden="true" data-toggle="tooltip"></i></a>
-                        &nbsp;&nbsp;&nbsp;<a href="#" data-placement="right" data-toggle="modal" data-target="#post-modal"><i
-                                class="fa fa-info" aria-hidden="true" data-toggle="tooltip" title="Post Details"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>@mdo</td>
-                    <td><a href="#" data-placement="right" title="View Bids" data-toggle="modal"
-                           data-target="#bid-modal"><i class="fa fa-gavel" aria-hidden="true" data-toggle="tooltip"></i></a>
-                        &nbsp;&nbsp;&nbsp;<a href="#" data-placement="right" data-toggle="modal" data-target="#post-modal"><i
-                                class="fa fa-info" aria-hidden="true" data-toggle="tooltip" title="Post Details"></i></a>
-                    </td>
-                </tr>
+                <tbody id="display-posts-tbody">
+
                 </tbody>
             </table>
             <div class="modal fade" id="bid-modal" tabindex="-1" role="dialog"
@@ -148,8 +116,10 @@
                                                    value="pehela" readonly="true" required>
                                         </td>
                                         <td><input type="text" class="form-control" name="amount"
-                                                    value="1" readonly="true" required></td>
-                                        <td><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></td>
+                                                   value="1" readonly="true" required></td>
+                                        <td><a href="#" data-toggle="tooltip" data-placement="right"
+                                               title="Add to Cart"><i class="fa fa-shopping-cart"
+                                                                      aria-hidden="true"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td><input type="text" class="form-control" name="bidID"
@@ -159,8 +129,10 @@
                                         <td><input type="text" class="form-control" name="postTitle"
                                                    value="Dusra" readonly="true" required></td>
                                         <td><input type="text" class="form-control" name="amount"
-                                                    value="1" readonly="true" required></td>
-                                        <td><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></td>
+                                                   value="1" readonly="true" required></td>
+                                        <td><a href="#" data-toggle="tooltip" data-placement="right"
+                                               title="Add to Cart"><i class="fa fa-shopping-cart"
+                                                                      aria-hidden="true"></i></a></td>
                                     </tr>
                                     <tr>
                                         <td><input type="text" class="form-control" name="bidID"
@@ -170,8 +142,10 @@
                                         <td><input type="text" class="form-control" name="postTitle"
                                                    value="Thesara" readonly="true" required></td>
                                         <td><input type="text" class="form-control" name="amount"
-                                                    value="1" readonly="true" required></td>
-                                        <td><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></td>
+                                                   value="1" readonly="true" required></td>
+                                        <td><a href="#" data-toggle="tooltip" data-placement="right"
+                                               title="Add to Cart"><i class="fa fa-shopping-cart"
+                                                                      aria-hidden="true"></i></a></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -195,8 +169,8 @@
                         <div class="modal-body">
                             <form id="post-modal-form" method="post">
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" name="postID"
-                                           id="post-modal-postID"
+                                    <input type="hidden" class="form-control" name="postId"
+                                           id="post-modal-postId"
                                            value="" readonly="true" required>
 
                                     <label for="post-modal-post-title" class="form-control-label">Title:</label>
@@ -205,9 +179,9 @@
                                            value="" readonly="true" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="post-modal-Description" class="form-control-label">Description:</label>
+                                    <label for="post-modal-description" class="form-control-label">Description:</label>
                                     <textarea class="form-control" name="itemDescription"
-                                              id="post-modal-Description" style="overflow:auto;resize: none"
+                                              id="post-modal-description"
                                               value="" readonly="true" required></textarea>
                                 </div>
 

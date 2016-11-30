@@ -10,6 +10,7 @@
 
     <!--Custom Scripts-->
     <script src="controller/nav-bar-controller.js"></script>
+    <script src="controller/my-bids-controller.js"></script>
     <script src="js/my-bids.js"></script>
     <script src="js/sorttable.js"></script>
 
@@ -80,31 +81,8 @@
                     <th class="sorttable_nosort"></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><a href="#" data-placement="right" data-toggle="modal" data-target="#post-modal"><i
-                            class="fa fa-info" aria-hidden="true" data-toggle="tooltip" title="Post Details"></i></a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@mdo</td>
-                    <td><a href="#" data-placement="right" data-toggle="modal" data-target="#post-modal"><i
-                            class="fa fa-info" aria-hidden="true" data-toggle="tooltip" title="Post Details"></i></a></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@mdo</td>
-                    <td><a href="#" data-placement="right" data-toggle="modal" data-target="#post-modal"><i
-                            class="fa fa-info" aria-hidden="true" data-toggle="tooltip" title="Post Details"></i></a></td>
-                </tr>
+                <tbody id="display-bids-tbody">
+
                 </tbody>
             </table>
         </div>
@@ -125,8 +103,8 @@
             <div class="modal-body">
                 <form id="post-modal-form" method="post">
                     <div class="form-group">
-                        <input type="hidden" class="form-control" name="postID"
-                               id="post-modal-postID"
+                        <input type="hidden" class="form-control" name="postId"
+                               id="post-modal-postId"
                                value="" readonly="true" required>
 
                         <label for="post-modal-post-title" class="form-control-label">Title:</label>
@@ -135,9 +113,9 @@
                                value="" readonly="true" required>
                     </div>
                     <div class="form-group">
-                        <label for="post-modal-Description" class="form-control-label">Description:</label>
+                        <label for="post-modal-description" class="form-control-label">Description:</label>
                         <textarea class="form-control" name="itemDescription"
-                                  id="post-modal-Description" style="overflow:auto;resize: none"
+                                  id="post-modal-description"
                                   value="" readonly="true" required></textarea>
                     </div>
 

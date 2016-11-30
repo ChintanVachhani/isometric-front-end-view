@@ -23,7 +23,7 @@ $(document).ready(function () {
         //REST call for login
         $.ajax({
             type: "POST",
-            url: serverAddress + "/user/login",
+            url: serverAddress + "/login",
             data: $(this).serialize(),
             success: function (data, textStatus, jqXHR) {
                 redirectToHome(data);
@@ -54,7 +54,7 @@ $(document).ready(function () {
         //REST call for register
         $.ajax({
             type: "POST",
-            url: serverAddress + "/user/register",
+            url: serverAddress + "/register",
             data: $(this).serialize(),
             success: function (data, textStatus, jqXHR) {
                 $("#login-alert").removeClass('alert-danger').addClass('alert-success');

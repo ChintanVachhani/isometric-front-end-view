@@ -3,6 +3,11 @@ $(document).ready(function () {
     $("#post-create-btn").click(function () {
         $("#new-post-modal-title").val($("#new-post-title").val());
     });
+    //Pass data from post details modal to new bid modal
+    $("#post-modal-bid-btn").click(function () {
+        $("#bid-modal-postId").val($("#post-modal-postId").val());
+        $("#bid-modal-post-title").val($("#post-modal-post-title").val());
+    });
     //Control Profile Modal invoking and buttons
     $('#profile-modal').on('hide.bs.modal', function () {
         disableInputs();
@@ -27,7 +32,7 @@ $(document).ready(function () {
     });
 
     $("#post-modal-bid-btn").click(function () {
-       $("#post-modal").modal('hide');
+        $("#post-modal").modal('hide');
     });
 
     function enableInputs() {
