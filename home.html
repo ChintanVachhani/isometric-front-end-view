@@ -190,7 +190,7 @@
                             <form id="new-post-form">
                                 <div class="form-group">
                                     <label for="new-post-modal-title" class="form-control-label">Title:</label>
-                                    <input type="text" class="form-control" name="title" id="new-post-modal-title">
+                                    <input type="text" class="form-control" name="postTitle" id="new-post-modal-title">
                                 </div>
                                 <div class="form-group">
                                     <label for="new-post-modal-description"
@@ -201,7 +201,8 @@
                                 <div class="form-group">
                                     <label for="new-post-modal-material-select"
                                            class="form-control-label">Material:</label>
-                                    <select class="form-control" name="material" id="new-post-modal-material-select">
+                                    <select class="form-control" name="itemMaterial"
+                                            id="new-post-modal-material-select">
                                         <option>Plastic</option>
                                         <option>Glass</option>
                                         <option>Polyamide</option>
@@ -210,7 +211,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="new-post-modal-size-select" class="form-control-label">Size:</label>
-                                    <select class="form-control" name="size" id="new-post-modal-size-select">
+                                    <select class="form-control" name="itemSize" id="new-post-modal-size-select">
                                         <option>S</option>
                                         <option>M</option>
                                         <option>L</option>
@@ -218,9 +219,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="new-post-modal-built-type-select" class="form-control-label">Color
+                                    <label for="new-post-modal-built-type-select" class="form-control-label">Built
                                         Type:</label>
-                                    <select class="form-control" name="builtType" id="new-post-modal-built-type-select">
+                                    <select class="form-control" name="itemBuiltType"
+                                            id="new-post-modal-built-type-select">
                                         <option>Solid</option>
                                         <option>Hollow</option>
                                     </select>
@@ -228,16 +230,18 @@
                                 <div class="form-group">
                                     <label for="new-post-modal-color-type-select" class="form-control-label">Color
                                         Type:</label>
-                                    <select class="form-control" name="colorType" id="new-post-modal-color-type-select">
+                                    <select class="form-control" name="itemColorType"
+                                            id="new-post-modal-color-type-select">
                                         <option>Mono</option>
                                         <option>Dual</option>
                                         <option>Multi</option>
                                     </select>
                                 </div>
+                                <input type="hidden" name="postTime" id="new-post-modal-time" value="">
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Post</button>
+                            <button type="button" class="btn btn-primary" id="new-post-modal-btn">Post</button>
                         </div>
                     </div>
                 </div>
@@ -259,7 +263,7 @@
                        data-target="#post-search-filter-modal">Filter</a>
                     <a href="#" class="btn btn-primary btn-sm" id="post-search-btn">Search</a>
                 </div>
-                <!-- New Post Modal -->
+                <!-- Search Filter Modal -->
                 <div class="modal fade" id="post-search-filter-modal" tabindex="-1" role="dialog"
                      aria-labelledby="newPostCreateModal" aria-hidden="true">
                     <div class="modal-dialog" role="document">
