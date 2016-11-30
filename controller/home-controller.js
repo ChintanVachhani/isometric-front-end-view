@@ -2,6 +2,7 @@ var serverAddress = "http://localhost:8080/isometric";
 if (!sessionStorage.userId) {
     window.location.href = "/isometric-front-end-view/login.html";
 } else {
+    var row;
     //REST call for user access
     $.ajax({
         type: "GET",
@@ -30,7 +31,6 @@ if (!sessionStorage.userId) {
     }
 
     function loadPosts() {
-        var row = "";
         //Load posts in the table
         function appendToTable(obj) {
             row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + obj.postTime + "</td> <td><a href='#' class='post-details' data-placement='right' class='card-link' data-toggle='modal'data-target='#post-modal'><i class='fa fa-info' title='Post Details' aria-hidden='true'data-toggle='tooltip'></i></a></td> </tr>";
