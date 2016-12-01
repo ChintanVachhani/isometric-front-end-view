@@ -1,3 +1,5 @@
-/**
- * Created by Chintan on 30-11-2016.
- */
+$(document).ready(function () {
+    $('#bid-modal').on('hidden.bs.modal', function (e) {
+        $("#display-bids-modal-tbody").empty();
+    });
+});

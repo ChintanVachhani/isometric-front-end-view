@@ -2,28 +2,29 @@ var serverAddress = "http://localhost:8080/isometric";
 if (!sessionStorage.userId) {
     window.location.href = "/isometric-front-end-view/login.html";
 } else {
-    var row = "";
-    //Load posts in the table
-    function appendToTable(obj) {
-        row += "<tr> <td>" + obj.bidId + "</td> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.bidAmount + "</td> <td><a href='#' class='post-details' data-placement='right' data-toggle='modal' data-target='#post-modal'><i class='fa fa-info' aria-hidden='true' data-toggle='tooltip' title='Post Details'></i></a> </td> </tr>"
-    }
-
-    //REST call for getting all bids for this user
-    $.ajax({
-        type: "GET",
-        url: serverAddress + "/" + sessionStorage.userId + "/bids",
-        success: function (data, textStatus, jqXHR) {
-            $.each(data, function (i, obj) {
-                appendToTable(obj);
-            });
-            $("#display-bids-tbody").append(row);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert("Cannot Load bids.");
-        }
-    });
-
     $(document).ready(function () {
+        var row = "";
+        //Load posts in the table
+        function appendToTable(obj) {
+            row += "<tr> <td>" + obj.bidId + "</td> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.bidAmount + "</td> <td><a href='#' class='post-details' data-placement='right' data-toggle='modal' data-target='#post-modal'><i class='fa fa-info' aria-hidden='true' data-toggle='tooltip' title='Post Details'></i></a> </td> </tr>"
+        }
+
+        //REST call for getting all bids for this user
+        $.ajax({
+            type: "GET",
+            url: serverAddress + "/" + sessionStorage.userId + "/bids",
+            success: function (data, textStatus, jqXHR) {
+                $.each(data, function (i, obj) {
+                    appendToTable(obj);
+                });
+                $("#display-bids-tbody").append(row);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Cannot Load bids.");
+            }
+        });
+
+
         $(document).on('click', '.post-details', function () {
             var postId = $(this).closest('tr').find('td:nth-child(2)').text();
 

@@ -9,10 +9,11 @@
     <script src="js/jquery.js"></script>
 
     <!--Custom Scripts-->
-    <script src="controller/nav-bar-controller.js"></script>
-    <script src="controller/my-posts-controller.js"></script>
-    <script src="js/my-posts.js"></script>
     <script src="js/sorttable.js"></script>
+    <script src="controller/nav-bar-controller.js"></script>
+    <script src="js/my-posts.js"></script>
+    <script src="controller/my-posts-controller.js"></script>
+
 
     <!-- Bootstrap & Tether Core JavaScript -->
     <script src="js/bootstrap.js"></script>
@@ -92,6 +93,12 @@
                  aria-labelledby="displayBidModal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="bid-modal-label"></h4>
+                        </div>
                         <div class="modal-body">
                             <form id="bid-modal-form" method="bid">
                                 <table class="table sortable">
@@ -104,49 +111,8 @@
                                         <th class="sorttable_nosort"></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><input type="text" class="form-control" name="bidID"
-                                                   value="1" readonly="true" required>
-                                        </td>
-                                        <td><input type="text" class="form-control" name="postID"
-                                                   value="101" readonly="true" required>
-                                        </td>
-                                        <td><input type="text" class="form-control" name="postTitle"
-                                                   value="pehela" readonly="true" required>
-                                        </td>
-                                        <td><input type="text" class="form-control" name="amount"
-                                                   value="1" readonly="true" required></td>
-                                        <td><a href="#" data-toggle="tooltip" data-placement="right"
-                                               title="Add to Cart"><i class="fa fa-shopping-cart"
-                                                                      aria-hidden="true"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" class="form-control" name="bidID"
-                                                   value="2" readonly="true" required></td>
-                                        <td><input type="text" class="form-control" name="postID"
-                                                   value="102" readonly="true" required></td>
-                                        <td><input type="text" class="form-control" name="postTitle"
-                                                   value="Dusra" readonly="true" required></td>
-                                        <td><input type="text" class="form-control" name="amount"
-                                                   value="1" readonly="true" required></td>
-                                        <td><a href="#" data-toggle="tooltip" data-placement="right"
-                                               title="Add to Cart"><i class="fa fa-shopping-cart"
-                                                                      aria-hidden="true"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="text" class="form-control" name="bidID"
-                                                   value="3" readonly="true" required></td>
-                                        <td><input type="text" class="form-control" name="postID"
-                                                   value="102" readonly="true" required></td>
-                                        <td><input type="text" class="form-control" name="postTitle"
-                                                   value="Thesara" readonly="true" required></td>
-                                        <td><input type="text" class="form-control" name="amount"
-                                                   value="1" readonly="true" required></td>
-                                        <td><a href="#" data-toggle="tooltip" data-placement="right"
-                                               title="Add to Cart"><i class="fa fa-shopping-cart"
-                                                                      aria-hidden="true"></i></a></td>
-                                    </tr>
+                                    <tbody id="display-bids-modal-tbody">
+
                                     </tbody>
                                 </table>
                             </form>

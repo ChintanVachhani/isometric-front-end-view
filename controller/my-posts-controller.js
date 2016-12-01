@@ -2,64 +2,66 @@ var serverAddress = "http://localhost:8080/isometric";
 if (!sessionStorage.userId) {
     window.location.href = "/isometric-front-end-view/login.html";
 } else {
-    //Load posts in the table
-    var row = "";
-    var time;
-    //Calculate the relative post time
-    function calculateRelativePostTime(timeDiff) {
-        var postDate = new Date(timeDiff);
-        var currentDate = new Date();
-        var date = (currentDate - postDate);
-        var seconds = parseInt(date / 1000);
-        var temp;
-        var interval = Math.floor(seconds / 31536000);
-        if (interval >= 1) {
-            temp = interval + " year(s)";
-        } else {
-            interval = Math.floor(seconds / 2592000);
+    $(document).ready(function () {
+        //Load posts in the table
+        var row = "";
+        var time;
+        //Calculate the relative post time
+        function calculateRelativePostTime(timeDiff) {
+            var postDate = new Date(timeDiff);
+            var currentDate = new Date();
+            var date = (currentDate - postDate);
+            var seconds = parseInt(date / 1000);
+            var temp;
+            var interval = Math.floor(seconds / 31536000);
             if (interval >= 1) {
-                temp = interval + " month(s)";
-            } else{
-                interval = Math.floor(seconds / 86400);
+                temp = interval + " year(s)";
+            } else {
+                interval = Math.floor(seconds / 2592000);
                 if (interval >= 1) {
-                    temp = interval + " day(s)";
-                }else{
-                    interval = Math.floor(seconds / 3600);
+                    temp = interval + " month(s)";
+                } else {
+                    interval = Math.floor(seconds / 86400);
                     if (interval >= 1) {
-                        temp = interval + " hour(s)";
-                    } else{
-                        interval = Math.floor(seconds / 60);
+                        temp = interval + " day(s)";
+                    } else {
+                        interval = Math.floor(seconds / 3600);
                         if (interval >= 1) {
-                            temp = interval + " minute(s)";
+                            temp = interval + " hour(s)";
+                        } else {
+                            interval = Math.floor(seconds / 60);
+                            if (interval >= 1) {
+                                temp = interval + " minute(s)";
+                            }
+                            else temp = Math.floor(seconds) + " second(s)";
                         }
-                        else temp = Math.floor(seconds) + " second(s)";
                     }
                 }
             }
+            time = temp + " ago";
         }
-        time = temp + " ago";
-    }
-    function appendToTable(obj) {
-        calculateRelativePostTime(obj.postTime);
-        row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='view-bids' data-placement='right' title='View Bids' data-toggle='modal' data-target='#bid-modal'><i class='fa fa-gavel' aria-hidden='true' data-toggle='tooltip'></i></a> &nbsp;&nbsp;&nbsp;<a href='#' class='post-details' data-placement='right' data-toggle='modal' data-target='#post-modal'><i class='fa fa-info' aria-hidden='true' data-toggle='tooltip' title='Post Details'></i></a></td> </tr>";
-    }
 
-    //REST call for getting all posts for this user
-    $.ajax({
-        type: "GET",
-        url: serverAddress + "/" + sessionStorage.userId + "/posts",
-        success: function (data, textStatus, jqXHR) {
-            $.each(data, function (i, obj) {
-                appendToTable(obj);
-            });
-            $("#display-posts-tbody").append(row);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert("Cannot Load posts.");
+        function appendToTable(obj) {
+            calculateRelativePostTime(obj.postTime);
+            row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='view-bids' data-placement='right' title='View Bids' data-toggle='modal' data-target='#bid-modal'><i class='fa fa-gavel' aria-hidden='true' data-toggle='tooltip'></i></a> &nbsp;&nbsp;&nbsp;<a href='#' class='post-details' data-placement='right' data-toggle='modal' data-target='#post-modal'><i class='fa fa-info' aria-hidden='true' data-toggle='tooltip' title='Post Details'></i></a></td> </tr>";
         }
-    });
 
-    $(document).ready(function () {
+        //REST call for getting all posts for this user
+        $.ajax({
+            type: "GET",
+            url: serverAddress + "/" + sessionStorage.userId + "/posts",
+            success: function (data, textStatus, jqXHR) {
+                $.each(data, function (i, obj) {
+                    appendToTable(obj);
+                });
+                $("#display-posts-tbody").append(row);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Cannot Load posts.");
+            }
+        });
+
+
         $(document).on('click', '.post-details', function () {
             var postId = $(this).closest('tr').find('td:first').text();
 
@@ -83,6 +85,36 @@ if (!sessionStorage.userId) {
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("Cannot Load post.");
+                }
+            });
+        });
+
+        $(document).on('click', '.view-bids', function () {
+            var postId = $(this).closest('tr').find('td:first').text();
+
+            function loadBidsModal(data) {
+                var row = "";
+                //Load bids in the table
+                function appendToModalTable(obj) {
+                    row += "<tr> <td>" + obj.bidId + "</td> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.bidAmount + "</td> <td><a href='#' data-toggle='tooltip' data-placement='right' title='Add to Cart'><i class='fa fa-shopping-cart' aria-hidden='true'></i></a></td> </tr>";
+                }
+
+                $.each(data, function (i, obj) {
+                    appendToModalTable(obj);
+                });
+                $("#bid-modal-label").text("# " + postId);
+                $("#display-bids-modal-tbody").append(row);
+            }
+
+            //REST call for getting bids on particular post
+            $.ajax({
+                type: "GET",
+                url: serverAddress + "/bids/" + postId,
+                success: function (data, textStatus, jqXHR) {
+                    loadBidsModal(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Cannot Load bids.");
                 }
             });
         });
