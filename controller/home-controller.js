@@ -24,7 +24,6 @@ if (!sessionStorage.userId) {
             $("#profile-modal-login-info-time").val(data.previousLoginTime);
             $("#profile-modal-login-info-date").val(data.previousLoginDate);
             $("#profile-modal-login-info-location").val(data.previousLoginLocation);
-
         });
     }
 
@@ -173,6 +172,19 @@ if (!sessionStorage.userId) {
 
         $("#post-search-filter-modal-save-btn").click(function () {
             filter = $("#post-search-filter-form").serialize();
+
+            // include unchecked checkboxes. use filter to only include unchecked boxes.
+            $.each($('#post-search-filter-form').find('input[type=checkbox]')
+                    .filter(function (idx) {
+                        return $(this).prop('checked') === false
+                    }),
+                function (idx, el) {
+                    // attach matched element names to the filter with a chosen value.
+                    var emptyVal = "";
+                    filter += '&' + $(el).attr('name') + '=' + emptyVal;
+                }
+            );
+            $('#post-search-filter-modal').modal('hide');
         });
 
         function loadSearchPosts() {
@@ -224,7 +236,7 @@ if (!sessionStorage.userId) {
             $.ajax({
                 type: "GET",
                 url: serverAddress + "/search",
-                data: $("#post-search-form").serialize()/* + "&" + filter*/,
+                data: $("#post-search-form").serialize() + "&" + filter,
                 success: function (data, textStatus, jqXHR) {
                     $.each(data, function (i, obj) {
                         appendToTable(obj);
