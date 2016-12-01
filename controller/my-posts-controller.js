@@ -2,10 +2,46 @@ var serverAddress = "http://localhost:8080/isometric";
 if (!sessionStorage.userId) {
     window.location.href = "/isometric-front-end-view/login.html";
 } else {
-    var row = "";
     //Load posts in the table
+    var row = "";
+    var time;
+    //Calculate the relative post time
+    function calculateRelativePostTime(timeDiff) {
+        var postDate = new Date(timeDiff);
+        var currentDate = new Date();
+        var date = (currentDate - postDate);
+        var seconds = parseInt(date / 1000);
+        var temp;
+        var interval = Math.floor(seconds / 31536000);
+        if (interval >= 1) {
+            temp = interval + " year(s)";
+        } else {
+            interval = Math.floor(seconds / 2592000);
+            if (interval >= 1) {
+                temp = interval + " month(s)";
+            } else{
+                interval = Math.floor(seconds / 86400);
+                if (interval >= 1) {
+                    temp = interval + " day(s)";
+                }else{
+                    interval = Math.floor(seconds / 3600);
+                    if (interval >= 1) {
+                        temp = interval + " hour(s)";
+                    } else{
+                        interval = Math.floor(seconds / 60);
+                        if (interval >= 1) {
+                            temp = interval + " minute(s)";
+                        }
+                        else temp = Math.floor(seconds) + " second(s)";
+                    }
+                }
+            }
+        }
+        time = temp + " ago";
+    }
     function appendToTable(obj) {
-        row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + obj.postTime + "</td> <td><a href='#' class='view-bids' data-placement='right' title='View Bids' data-toggle='modal' data-target='#bid-modal'><i class='fa fa-gavel' aria-hidden='true' data-toggle='tooltip'></i></a> &nbsp;&nbsp;&nbsp;<a href='#' class='post-details' data-placement='right' data-toggle='modal' data-target='#post-modal'><i class='fa fa-info' aria-hidden='true' data-toggle='tooltip' title='Post Details'></i></a></td> </tr>";
+        calculateRelativePostTime(obj.postTime);
+        row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='view-bids' data-placement='right' title='View Bids' data-toggle='modal' data-target='#bid-modal'><i class='fa fa-gavel' aria-hidden='true' data-toggle='tooltip'></i></a> &nbsp;&nbsp;&nbsp;<a href='#' class='post-details' data-placement='right' data-toggle='modal' data-target='#post-modal'><i class='fa fa-info' aria-hidden='true' data-toggle='tooltip' title='Post Details'></i></a></td> </tr>";
     }
 
     //REST call for getting all posts for this user
