@@ -253,16 +253,21 @@
             <div class="card" id="search-card">
                 <h6 class="card-header">Search Post</h6>
                 <div class="card-block">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
-                        <input type="search" class="form-control" placeholder="Search" id="post-search">
-                    </div>
+                    <form id="post-search-form">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <input type="search" class="form-control" placeholder="Search" name="postSearch"
+                                   id="post-search">
+                        </div>
+                    </form>
                 </div>
                 <div class="card-block text-xs-right" id="post-search-btn-container">
                     <!--Button Trigger for Search Filter Modal-->
-                    <a href="#" class="btn btn-secondary btn-sm" id="post-search-filter-btn" data-toggle="modal"
-                       data-target="#post-search-filter-modal">Filter</a>
-                    <a href="#" class="btn btn-primary btn-sm" id="post-search-btn">Search</a>
+                    <button type="button" class="btn btn-secondary btn-sm" id="post-search-filter-btn"
+                            data-toggle="modal"
+                            data-target="#post-search-filter-modal">Filter
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm" id="post-search-btn">Search</button>
                 </div>
                 <!-- Search Filter Modal -->
                 <div class="modal fade" id="post-search-filter-modal" tabindex="-1" role="dialog"
@@ -281,16 +286,20 @@
                                         <label class="form-control-label">Material:</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Plastic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="plastic"
+                                                       id="plastic-material"> Plastic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Glass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="glass"
+                                                       id="glass-material"> Glass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Polycarbonate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="polycarbonate"
+                                                       id="polycarbonate-material"> Polycarbonate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Polyamide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="polyamide"
+                                                       id="polyamide-material"> Polyamide&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                         </div>
                                     </div>
@@ -298,16 +307,20 @@
                                         <label class="form-control-label">Size:</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="S"
+                                                       id="small-size"> S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="M"
+                                                       id="medium-size"> M&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="L"
+                                                       id="large-size"> L&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> XL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="XL"
+                                                       id="extra-large-size"> XL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                         </div>
                                     </div>
@@ -315,10 +328,12 @@
                                         <label class="form-control-label">Built Type:</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Solid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="solid"
+                                                       id="solid-built-type"> Solid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Hollow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="hollow"
+                                                       id="hollow-built-type"> Hollow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                         </div>
                                     </div>
@@ -326,13 +341,16 @@
                                         <label class="form-control-label">Color Type:</label>
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Mono&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="mono"
+                                                       id="mono-color-type"> Mono&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Dual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="dual"
+                                                       id="dual-color-type"> Dual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                             <label class="form-check-label">
-                                                <input class="form-check-input" type="checkbox"> Multi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input class="form-check-input" type="checkbox" name="multi"
+                                                       id="multi-color-type"> Multi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </label>
                                         </div>
                                     </div>

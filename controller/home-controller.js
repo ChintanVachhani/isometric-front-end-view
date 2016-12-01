@@ -45,15 +45,15 @@ if (!sessionStorage.userId) {
                 interval = Math.floor(seconds / 2592000);
                 if (interval >= 1) {
                     temp = interval + " month(s)";
-                } else{
+                } else {
                     interval = Math.floor(seconds / 86400);
                     if (interval >= 1) {
                         temp = interval + " day(s)";
-                    }else{
+                    } else {
                         interval = Math.floor(seconds / 3600);
                         if (interval >= 1) {
                             temp = interval + " hour(s)";
-                        } else{
+                        } else {
                             interval = Math.floor(seconds / 60);
                             if (interval >= 1) {
                                 temp = interval + " minute(s)";
@@ -90,6 +90,7 @@ if (!sessionStorage.userId) {
 
     $(document).ready(function () {
         loadPosts();
+        var filter;
         $("#profile-modal-save-btn").click(function (e) {
             e.preventDefault();
             //REST call for user info update
@@ -117,7 +118,8 @@ if (!sessionStorage.userId) {
                 url: serverAddress + "/" + sessionStorage.userId + "/post",
                 data: $("#new-post-form").serialize(),
                 success: function (data, textStatus, jqXHR) {
-                    window.location.reload();
+                    $("#display-posts-tbody").empty();
+                    loadPosts();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     window.location.href = "/isometric-front-end-view/error-404.html";
@@ -167,6 +169,79 @@ if (!sessionStorage.userId) {
                 }
             });
             $('#bid-modal').modal('hide');
+        });
+
+        $("#post-search-filter-modal-save-btn").click(function () {
+            filter = $("#post-search-filter-form").serialize();
+        });
+
+        function loadSearchPosts() {
+            var row = "";
+            var time;
+            //Calculate the relative post time
+            function calculateRelativePostTime(timeDiff) {
+                var postDate = new Date(timeDiff);
+                var currentDate = new Date();
+                var date = (currentDate - postDate);
+                var seconds = parseInt(date / 1000);
+                var temp;
+                var interval = Math.floor(seconds / 31536000);
+                if (interval >= 1) {
+                    temp = interval + " year(s)";
+                } else {
+                    interval = Math.floor(seconds / 2592000);
+                    if (interval >= 1) {
+                        temp = interval + " month(s)";
+                    } else {
+                        interval = Math.floor(seconds / 86400);
+                        if (interval >= 1) {
+                            temp = interval + " day(s)";
+                        } else {
+                            interval = Math.floor(seconds / 3600);
+                            if (interval >= 1) {
+                                temp = interval + " hour(s)";
+                            } else {
+                                interval = Math.floor(seconds / 60);
+                                if (interval >= 1) {
+                                    temp = interval + " minute(s)";
+                                }
+                                else temp = Math.floor(seconds) + " second(s)";
+                            }
+                        }
+                    }
+                }
+                time = temp + " ago";
+            }
+
+            //Load posts in the table
+            function appendToTable(obj) {
+                calculateRelativePostTime(obj.postTime);
+                row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='post-details' data-placement='right' class='card-link' data-toggle='modal'data-target='#post-modal'><i class='fa fa-info' title='Post Details' aria-hidden='true'data-toggle='tooltip'></i></a></td> </tr>";
+            }
+
+
+            //REST call for search posts
+            $.ajax({
+                type: "GET",
+                url: serverAddress + "/search",
+                data: $("#post-search-form").serialize()/* + "&" + filter*/,
+                success: function (data, textStatus, jqXHR) {
+                    $.each(data, function (i, obj) {
+                        appendToTable(obj);
+                    });
+                    $("#display-posts-tbody").empty();
+                    $("#display-posts-tbody").append(row);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    window.location.href = "/isometric-front-end-view/error-404.html";
+                }
+            });
+
+        }
+
+        $("#post-search-btn").click(function (e) {
+            e.preventDefault();
+            loadSearchPosts();
         });
     });
 }
