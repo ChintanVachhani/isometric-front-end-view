@@ -43,7 +43,7 @@ if (!sessionStorage.userId) {
 
         function appendToTable(obj) {
             calculateRelativePostTime(obj.postTime);
-            row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='view-bids' data-placement='right' title='View Bids' data-toggle='modal' data-target='#bid-modal'><i class='fa fa-gavel' aria-hidden='true' data-toggle='tooltip'></i></a> &nbsp;&nbsp;&nbsp;<a href='#' class='post-details' data-placement='right' data-toggle='modal' data-target='#post-modal'><i class='fa fa-info' aria-hidden='true' data-toggle='tooltip' title='Post Details'></i></a></td> </tr>";
+            row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='view-bids btn btn-warning btn-sm' data-placement='right' title='View Bids' data-toggle='modal' data-target='#bid-modal'><i class='fa fa-gavel' aria-hidden='true' data-toggle='tooltip'></i></a> &nbsp;&nbsp;&nbsp;<a href='#' class='post-details btn btn-secondary btn-sm' data-placement='right' data-toggle='modal' data-target='#post-modal'><i class='fa fa-info' aria-hidden='true' data-toggle='tooltip' title='Post Details'></i></a></td> </tr>";
         }
 
         //REST call for getting all posts for this user
@@ -96,7 +96,7 @@ if (!sessionStorage.userId) {
                 var row = "";
                 //Load bids in the table
                 function appendToModalTable(obj) {
-                    row += "<tr> <td>" + obj.bidId + "</td> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.bidAmount + "</td> <td><a href='#' data-toggle='tooltip' data-placement='right' title='Add to Cart'><i class='fa fa-shopping-cart' aria-hidden='true'></i></a></td> </tr>";
+                    row += "<tr> <td>" + obj.bidId + "</td> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.bidAmount + "</td> <td><a href='#' class='add-to-cart btn btn-success btn-sm' data-toggle='tooltip' data-placement='right' title='Add to Cart'><i class='fa fa-cart-plus' aria-hidden='true'></i></a></td> </tr>";
                 }
 
                 $.each(data, function (i, obj) {
@@ -115,6 +115,22 @@ if (!sessionStorage.userId) {
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     alert("Cannot Load bids.");
+                }
+            });
+        });
+
+        $(document).on('click', '.add-to-cart', function () {
+            var bidId = $(this).closest('tr').find('td:first').text();
+
+            //REST call for posting an order
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "/" + sessionStorage.userId + "/order/" + bidId,
+                success: function (data, textStatus, jqXHR) {
+                    $('#add-to-cart-alert').text("Added to Cart.").show().delay(1000).fadeOut();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    window.location.href = "/isometric-front-end-view/error-404.html";
                 }
             });
         });

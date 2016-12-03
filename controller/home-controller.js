@@ -68,7 +68,7 @@ if (!sessionStorage.userId) {
         //Load posts in the table
         function appendToTable(obj) {
             calculateRelativePostTime(obj.postTime);
-            row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='post-details' data-placement='right' class='card-link' data-toggle='modal'data-target='#post-modal'><i class='fa fa-info' title='Post Details' aria-hidden='true'data-toggle='tooltip'></i></a></td> </tr>";
+            row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='post-details btn btn-secondary btn-sm card-link' data-placement='right' data-toggle='modal'data-target='#post-modal'><i class='fa fa-info' title='Post Details' aria-hidden='true'data-toggle='tooltip'></i></a></td> </tr>";
         }
 
         //REST call for getting all posts
@@ -170,7 +170,7 @@ if (!sessionStorage.userId) {
             $('#bid-modal').modal('hide');
         });
 
-        $("#post-search-filter-modal-save-btn").click(function () {
+        function initializeFilter() {
             filter = $("#post-search-filter-form").serialize();
 
             // include unchecked checkboxes. use filter to only include unchecked boxes.
@@ -184,6 +184,10 @@ if (!sessionStorage.userId) {
                     filter += '&' + $(el).attr('name') + '=' + emptyVal;
                 }
             );
+        }
+
+        $("#post-search-filter-modal-save-btn").click(function () {
+            initializeFilter();
             $('#post-search-filter-modal').modal('hide');
         });
 
@@ -228,7 +232,7 @@ if (!sessionStorage.userId) {
             //Load posts in the table
             function appendToTable(obj) {
                 calculateRelativePostTime(obj.postTime);
-                row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='post-details' data-placement='right' class='card-link' data-toggle='modal'data-target='#post-modal'><i class='fa fa-info' title='Post Details' aria-hidden='true'data-toggle='tooltip'></i></a></td> </tr>";
+                row += "<tr> <td>" + obj.postId + "</td> <td>" + obj.postTitle + "</td> <td>" + obj.itemMaterial + "</td> <td>" + obj.itemSize + "</td> <td>" + obj.itemBuiltType + "</td> <td>" + obj.itemColorType + "</td> <td>" + time + "</td> <td><a href='#' class='post-details btn btn-secondary btn-sm card-link' data-placement='right' data-toggle='modal'data-target='#post-modal'><i class='fa fa-info' title='Post Details' aria-hidden='true'data-toggle='tooltip'></i></a></td> </tr>";
             }
 
 
@@ -253,6 +257,7 @@ if (!sessionStorage.userId) {
 
         $("#post-search-btn").click(function (e) {
             e.preventDefault();
+            initializeFilter();
             loadSearchPosts();
         });
     });

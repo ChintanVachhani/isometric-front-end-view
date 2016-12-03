@@ -9,13 +9,13 @@
     <script src="js/jquery.js"></script>
 
     <!--Custom Scripts-->
-    <script src="js/sorttable.js"></script>
+    <script src="controller/my-posts-controller.js"></script>
     <script src="controller/nav-bar-controller.js"></script>
     <script src="js/my-posts.js"></script>
-    <script src="controller/my-posts-controller.js"></script>
-
+    <script src="js/sorttable.js"></script>
 
     <!-- Bootstrap & Tether Core JavaScript -->
+    <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.js"></script>
 
     <!-- Bootstrap, Font Awesome & Tether CSS -->
@@ -33,40 +33,52 @@
 <body>
 
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
-    <a class="navbar-brand" href="#" id="nav-logo">
-        <img src="img/isometric-logo-light.png" width="30" height="30" class="d-inline-block align-top"
-             alt="isometric-logo">
-        Isometric
-    </a>
-    <ul class="nav navbar-nav">
-        <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="home.html" id="home-link"><i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Home</a>
-        </li>
-        <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="my-bids.html" id="my-bids-link"><i class="fa fa-gavel" aria-hidden="true"></i>&nbsp;&nbsp;My
-                Bids</a>
-        </li>
-        <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="my-posts.html" id="my-posts-link"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;&nbsp;My
-                Posts</a>
-        </li>
-        <li class="nav-item nav-item-custom">
-            <a class="nav-link" href="#" id="my-shopping-cart-link"><i class="fa fa-shopping-cart fa-lg"
-                                                                       aria-hidden="true"></i>&nbsp;&nbsp;My Cart</a>
-        </li>
-        <li class="nav-item dropdown" id="dropdown-right">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
-            </a>
-            <div class="dropdown-menu" id="slide-right" aria-labelledby="navbarDropdownMenuLink">
-                <!--Button Trigger for Profile Modal-->
-                <a class="dropdown-item" href="#" data-toggle="modal" id="my-profile-link"
-                   data-target="#profile-modal">My Profile</a>
-                <a class="dropdown-item" href="login.html" id="logout-link">Logout</a>
-            </div>
-        </li>
-    </ul>
+    <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+        <a class="navbar-brand" href="#" id="nav-logo">
+            <img src="img/isometric-logo-light.png" width="30" height="30" class="d-inline-block align-top"
+                 alt="isometric-logo">
+            Isometric
+        </a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="home.html" id="home-link"><i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Home</a>
+            </li>
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="my-bids.html" id="my-bids-link"><i class="fa fa-gavel fa-lg"
+                                                                             aria-hidden="true"></i>&nbsp;&nbsp;My
+                    Bids</a>
+            </li>
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="my-posts.html" id="my-posts-link"><i class="fa fa-upload fa-lg"
+                                                                               aria-hidden="true"></i>&nbsp;&nbsp;My
+                    Posts</a>
+            </li>
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="my-cart.html" id="my-cart-link"><i class="fa fa-shopping-cart fa-lg"
+                                                                             aria-hidden="true"></i>&nbsp;&nbsp;My
+                    Cart</a>
+            </li>
+            <li class="nav-item nav-item-custom">
+                <a class="nav-link" href="my-orders.html" id="my-orders-link"><i class="fa fa-wpforms fa-lg"
+                                                                                 aria-hidden="true"></i>&nbsp;&nbsp;My
+                    Orders</a>
+            </li>
+            <li class="nav-item dropdown" id="dropdown-right">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
+                </a>
+                <div class="dropdown-menu" id="slide-right" aria-labelledby="navbarDropdownMenuLink">
+                    <!--Button Trigger for Profile Modal-->
+                    <a class="dropdown-item" href="#" data-toggle="modal" id="my-profile-link"
+                       data-target="#profile-modal">My Profile</a>
+                    <a class="dropdown-item" href="login.html" id="logout-link">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </nav>
 <div class="container-fluid" id="my-posts-bg">
     <div class="row">
@@ -81,7 +93,7 @@
                     <th>Size&nbsp;&nbsp;</th>
                     <th>Built Type&nbsp;&nbsp;</th>
                     <th>Color Type&nbsp;&nbsp;</th>
-                    <th>Time Posted&nbsp;&nbsp;</th>
+                    <th class="sorttable_nosort">Time Posted&nbsp;&nbsp;</th>
                     <th class="sorttable_nosort"></th>
                 </tr>
                 </thead>
@@ -89,6 +101,8 @@
 
                 </tbody>
             </table>
+
+            <!---Display bids modal--->
             <div class="modal fade" id="bid-modal" tabindex="-1" role="dialog"
                  aria-labelledby="displayBidModal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -104,8 +118,8 @@
                                 <table class="table sortable">
                                     <thead class="thead-default">
                                     <tr>
-                                        <th class="sorttable_nosort">Bid ID</th>
-                                        <th>Post ID&nbsp;&nbsp;</th>
+                                        <th>Bid ID</th>
+                                        <th>Post ID</th>
                                         <th>Title&nbsp;&nbsp;</th>
                                         <th>Amount&nbsp;($)&nbsp;</th>
                                         <th class="sorttable_nosort"></th>
@@ -116,6 +130,8 @@
                                     </tbody>
                                 </table>
                             </form>
+                            <!--Alert-->
+                            <div class="alert alert-success fade in" role="alert" id="add-to-cart-alert"></div>
                         </div>
                     </div>
                 </div>
@@ -158,6 +174,12 @@
                                            value="" readonly="true" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="post-modal-size" class="form-control-label">Size:</label>
+                                    <input type="text" class="form-control" name="itemSize"
+                                           id="post-modal-size"
+                                           value="" readonly="true" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="post-modal-built-type" class="form-control-label">Built Type:</label>
                                     <input type="text" class="form-control" name="itemBuiltType"
                                            id="post-modal-built-type"
@@ -169,13 +191,6 @@
                                            id="post-modal-color-type"
                                            value="" readonly="true" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="post-modal-size" class="form-control-label">Size:</label>
-                                    <input type="text" class="form-control" name="itemSize"
-                                           id="post-modal-size"
-                                           value="" readonly="true" required>
-                                </div>
-
                             </form>
                         </div>
                     </div>

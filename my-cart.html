@@ -9,10 +9,10 @@
     <script src="js/jquery.js"></script>
 
     <!--Custom Scripts-->
-    <script src="controller/my-bids-controller.js"></script>
-    <script src="controller/nav-bar-controller.js"></script>
-    <script src="js/my-bids.js"></script>
     <script src="js/sorttable.js"></script>
+    <script src="controller/nav-bar-controller.js"></script>
+    <script src="controller/my-cart-controller.js"></script>
+    <script src="js/my-cart.js"></script>
 
     <!-- Bootstrap & Tether Core JavaScript -->
     <script src="js/tether.min.js"></script>
@@ -24,7 +24,7 @@
     <link href="css/tether.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/my-bids.css" rel="stylesheet">
+    <link href="css/my-cart.css" rel="stylesheet">
     <link href="css/sorttable.css" rel="stylesheet">
     <link rel="icon" href="img/favicon.png">
 
@@ -80,82 +80,28 @@
         </ul>
     </div>
 </nav>
-<div class="container-fluid" id="my-bids-bg">
+<div class="container-fluid" id="my-cart-bg">
     <div class="row">
         <div class="col-lg-12" id="display-div">
             <!--Display Div-->
             <table class="table sortable">
                 <thead class="thead-default">
                 <tr>
+                    <th class="sorttable_nosort">Order ID</th>
+                    <th class="sorttable_nosort">Post ID</th>
                     <th class="sorttable_nosort">Bid ID</th>
-                    <th>Post ID&nbsp;&nbsp;</th>
-                    <th>Title&nbsp;&nbsp;</th>
-                    <th>Amount&nbsp;($)&nbsp;</th>
+                    <th class="sorttable_nosort">Quantity</th>
+                    <th class="sorttable_nosort"></th>
+                    <th class="sorttable_nosort">Amount&nbsp;($)</th>
                     <th class="sorttable_nosort"></th>
                 </tr>
                 </thead>
-                <tbody id="display-bids-tbody">
+                <tbody id="display-orders-tbody">
 
                 </tbody>
             </table>
-        </div>
-    </div>
-</div>
-
-<!---Display post description modal--->
-<div class="modal fade" id="post-modal" tabindex="-1" role="dialog"
-     aria-labelledby="newPostCreateModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="post-modal-label">#&nbsp;</h4>
-            </div>
-            <div class="modal-body">
-                <form id="post-modal-form" method="post">
-                    <div class="form-group">
-                        <input type="hidden" class="form-control" name="postId"
-                               id="post-modal-postId"
-                               value="" readonly="true" required>
-
-                        <label for="post-modal-post-title" class="form-control-label">Title:</label>
-                        <input type="text" class="form-control" name="postTitle"
-                               id="post-modal-post-title"
-                               value="" readonly="true" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="post-modal-description" class="form-control-label">Description:</label>
-                        <textarea class="form-control" name="itemDescription"
-                                  id="post-modal-description"
-                                  value="" readonly="true" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="post-modal-material" class="form-control-label">Material:</label>
-                        <input type="email" class="form-control" name="itemMaterial"
-                               id="post-modal-material"
-                               value="" readonly="true" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="post-modal-size" class="form-control-label">Size:</label>
-                        <input type="text" class="form-control" name="itemSize"
-                               id="post-modal-size"
-                               value="" readonly="true" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="post-modal-built-type" class="form-control-label">Built Type:</label>
-                        <input type="text" class="form-control" name="itemBuiltType"
-                               id="post-modal-built-type"
-                               value="" readonly="true" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="post-modal-color-type" class="form-control-label">Color Type:</label>
-                        <input type="text" class="form-control" name="itemColorType"
-                               id="post-modal-color-type"
-                               value="" readonly="true" required>
-                    </div>
-                </form>
+            <div class="input-group form-element-center">
+                <button type="submit" class="btn btn-warning" id="checkout-btn">Checkout</button>
             </div>
         </div>
     </div>
