@@ -9,8 +9,11 @@
  error: error_callback //function(jqXHR, textStatus, errorThrown)
  });*/
 
-var serverAddress = "http://localhost:8080/isometric";
 $(document).ready(function () {
+    if (typeof(Storage) !== "undefined") {
+        if (!localStorage.flag)
+            localStorage.flag = 1;
+    }
     $("#login-form").submit(function (e) {
         e.preventDefault();
         var timeStamp = new Date();

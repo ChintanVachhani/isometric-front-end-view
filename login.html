@@ -3,17 +3,83 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-signin-client_id"
+          content="845515462692-vfi11u05gg563015lqqo7gu8rtgqja6d.apps.googleusercontent.com">
+    <!--Client Secret - NtcCzrohzadBhK3Bds9YDXXX-->
     <title>Isometric</title>
 
+    <!--Global JavaScript-->
+    <script src="js/global.js"></script>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
     <!--For Geo Location of the user-->
     <script src="http://www.geoplugin.net/javascript.gp"></script>
+
     <!--Custom Scripts-->
     <script src="js/login.js"></script>
     <script src="controller/login-controller.js"></script>
+
+    <!--Google Single Sign On-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        function redirectToHome(data) {
+            if (data.message == "Login successful.") {
+                if (typeof(Storage) !== "undefined") {
+                    sessionStorage.userId = data.userId;
+                    window.location.href = "/isometric-front-end-view/home.html";
+                } else {
+                    $("#login-alert").removeClass('alert-success').addClass('alert-danger').text("No Storage support in your browser. Use a latest browser.");
+                }
+
+            } else {
+                $("#login-alert").removeClass('alert-success').addClass('alert-danger').text(data.message);
+                $("#login-alert").show().delay(1000).fadeOut();
+            }
+        }
+
+        function sso(profile) {
+            var timeStamp = new Date();
+            var time = timeStamp.getHours() + ":" + timeStamp.getMinutes() + ":" + timeStamp.getSeconds();
+            var date = timeStamp.getDate() + "/" + (timeStamp.getMonth() + 1) + "/" + timeStamp.getFullYear();
+            var location = geoplugin_city() + ", " + geoplugin_region() + ", " + geoplugin_countryName();
+
+            //REST call for single sign on
+            $.ajax({
+                type: "POST",
+                url: serverAddress + "/sso",
+                data: "email=" + profile.getEmail() + "&fullName=" + profile.getName() + "&time=" + time + "&date=" + date + "&location=" + location,
+                success: function (data, textStatus, jqXHR) {
+                    redirectToHome(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    window.location.href = "/isometric-front-end-view/error-404.html";
+                }
+            });
+        }
+
+        function onSignIn(googleUser) {
+            if (localStorage.flag == 0) {
+                localStorage.flag = 1;
+                signOut();
+            } else {
+                var profile = googleUser.getBasicProfile();
+                /*console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                 console.log('Name: ' + profile.getName());
+                 console.log('Image URL: ' + profile.getImageUrl());
+                 console.log('Email: ' + profile.getEmail());*/
+                sso(profile);
+            }
+        }
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/tether.min.js"></script>
@@ -52,7 +118,7 @@
                 </div>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
-                        <button type="submit" class="btn btn-primary" id="login-btn">Log in</button>
+                        <button type="submit" class="btn btn-danger" id="login-btn">Log in</button>
                     </div>
                     <span class="help-block">Not registered yet? <a
                             href="javascript:void(0)" id="register-link"
@@ -66,9 +132,8 @@
                 <legend><i class="fa fa-exchange" aria-hidden="true"></i></legend>
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
-                        <button class="btn btn-danger" id="google-login-btn">Log in with
-                            <strong>Google</strong>
-                        </button>
+                        <div class="g-signin2" id="google-login-btn" data-onsuccess="onSignIn">
+                        </div>
                     </div>
                 </div>
             </fieldset>

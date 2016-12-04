@@ -1,5 +1,16 @@
-var serverAddress = "http://localhost:8080/isometric";
-if (!sessionStorage.userId) {
+//REST call for user authentication
+$.ajax({
+    type: "POST",
+    url: serverAddress + "/" + sessionStorage.userId,
+    success: function (data, textStatus, jqXHR) {
+        isAuthenticated = data;
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+        window.location.href = "/isometric-front-end-view/login.html";
+    },
+    async: false
+});
+if (!isAuthenticated) {
     window.location.href = "/isometric-front-end-view/login.html";
 } else {
     var row = "";
