@@ -13,17 +13,17 @@
     <script type="text/javascript" src="js/global.js"></script>
 
     <!-- jQuery -->
-    <script type="application/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
 
     <!--For Geo Location of the user-->
-    <script type="application/javascript" src="http://www.geoplugin.net/javascript.gp"></script>
+    <script type="text/javascript" language="JavaScript" src="https://www.geoplugin.net/javascript.gp"></script>
 
     <!--Custom Scripts-->
-    <script type="application/javascript" src="js/login.js"></script>
-    <script type="application/javascript" src="controller/login-controller.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="controller/login-controller.js"></script>
 
     <!--Google Single Sign On-->
-    <script type="application/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
+    <script type="text/javascript/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
     <script>
         function redirectToHome(data) {
             if (data.message == "Login successful.") {
@@ -44,8 +44,9 @@
             var timeStamp = new Date();
             var time = timeStamp.getHours() + ":" + timeStamp.getMinutes() + ":" + timeStamp.getSeconds();
             var date = timeStamp.getDate() + "/" + (timeStamp.getMonth() + 1) + "/" + timeStamp.getFullYear();
-            var location = geoplugin_city() + ", " + geoplugin_region() + ", " + geoplugin_countryName();
-
+            $.getJSON('https://ipinfo.io', function(data){
+                var location = data.city() + ", " + data.region() + ", " + data.countryName();
+            });
             //REST call for single sign on
             $.ajax({
                 type: "POST",
@@ -134,6 +135,7 @@
                 <div class="form-group form-group-center">
                     <div class="input-group form-element-center">
                         <div class="g-signin2" id="google-login-btn" data-onsuccess="onSignIn">
+
                         </div>
                     </div>
                 </div>

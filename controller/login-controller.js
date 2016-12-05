@@ -19,7 +19,9 @@ $(document).ready(function () {
         var timeStamp = new Date();
         var time = timeStamp.getHours() + ":" + timeStamp.getMinutes() + ":" + timeStamp.getSeconds();
         var date = timeStamp.getDate() + "/" + (timeStamp.getMonth() + 1) + "/" + timeStamp.getFullYear();
-        var location = geoplugin_city() + ", " + geoplugin_region() + ", " + geoplugin_countryName();
+        $.getJSON('https://ipinfo.io', function(data){
+            var location = data.city() + ", " + data.region() + ", " + data.countryName();
+        });
         $("#login-time").val(time);
         $("#login-date").val(date);
         $("#login-location").val(location);
