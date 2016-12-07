@@ -1,2 +1,2 @@
-var serverAddress = "http://localhost:8080/isometric";
+var serverAddress = "https://localhost:8080/isometric";
 

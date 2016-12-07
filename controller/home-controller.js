@@ -13,6 +13,7 @@ $.ajax({
 if (!isAuthenticated) {
     window.location.href = "/isometric-front-end-view/login.html";
 } else {
+    var loadFlag = 0;
     //REST call for user access
     $.ajax({
         type: "GET",
@@ -270,7 +271,13 @@ if (!isAuthenticated) {
             e.preventDefault();
             initializeFilter();
             loadSearchPosts();
+            loadFlag = 1;
         });
+
+        window.setInterval(function () {
+            $("#display-posts-tbody").empty();
+            loadPosts();
+        }, 30000);
     });
 }
 
