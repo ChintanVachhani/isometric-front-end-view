@@ -275,8 +275,10 @@ if (!isAuthenticated) {
         });
 
         window.setInterval(function () {
-            $("#display-posts-tbody").empty();
-            loadPosts();
+			if(loadFlag == 0){
+				$("#display-posts-tbody").empty();
+				loadPosts();
+			}
         }, 30000);
     });
 }
