@@ -19,9 +19,11 @@ $(document).ready(function () {
         var timeStamp = new Date();
         var time = timeStamp.getHours() + ":" + timeStamp.getMinutes() + ":" + timeStamp.getSeconds();
         var date = timeStamp.getDate() + "/" + (timeStamp.getMonth() + 1) + "/" + timeStamp.getFullYear();
-        $.getJSON('https://ipinfo.io', function(data){
-            var location = data.city() + ", " + data.region() + ", " + data.countryName();
-        });
+        var location = "Richardson, TX, USA";
+        //Hardcoded here because there is no free https library for geolocation that works and we are unable to make http requests through https
+        /*$.getJSON('http://ipinfo.io', function(data){
+         var location = data.city() + ", " + data.region() + ", " + data.countryName();
+         });*/
         $("#login-time").val(time);
         $("#login-date").val(date);
         $("#login-location").val(location);
